@@ -1,11 +1,13 @@
 package com.example.apple.bilibili;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -20,6 +22,7 @@ public class LoginActivity extends Activity {
     ImageView mDeleUserName;
     EditText et_UserName;
     EditText et_pass;
+    Button loginBtn;
 
 
     @Override
@@ -32,6 +35,15 @@ public class LoginActivity extends Activity {
         mDeleUserName = findViewById(R.id.delete_username);
         et_UserName = findViewById(R.id.et_username);
         et_pass = findViewById(R.id.et_password);
+        loginBtn = (Button)findViewById(R.id.btn_login);
+
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+
+            }
+        });
 
         et_UserName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -78,4 +90,6 @@ public class LoginActivity extends Activity {
 
 
     }
+
+
 }
