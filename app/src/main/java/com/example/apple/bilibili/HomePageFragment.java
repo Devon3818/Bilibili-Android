@@ -1,15 +1,20 @@
 package com.example.apple.bilibili;
 
 import android.app.Activity;
-import android.app.Fragment;
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v7.widget.Toolbar;
+
+import com.flyco.tablayout.SlidingTabLayout;
+
 /**
  * Created by apple on 2018/3/29.
  */
@@ -17,6 +22,8 @@ import android.support.v7.widget.Toolbar;
 public class HomePageFragment extends Fragment {
 
     Toolbar mToolbar;
+    ViewPager mViewPager;
+    SlidingTabLayout mSlidingTab;
 
     @Nullable
     @Override
@@ -29,6 +36,14 @@ public class HomePageFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mViewPager = view.findViewById(R.id.view_pager);
+        mSlidingTab = view.findViewById(R.id.sliding_tabs);
+        initViewPager();
+    }
+
     public static HomePageFragment newInstance() {
         return new HomePageFragment();
     }
@@ -38,5 +53,13 @@ public class HomePageFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_main, menu);
+    }
+
+    private void initViewPager(){
+        HomePagerAdapter homePagerAdapter = new HomePagerAdapter(getChildFragmentManager(),getActivity().getApplicationContext());
+        mViewPager.setOffscreenPageLimit(5);
+        mViewPager.setAdapter(homePagerAdapter);
+        mSlidingTab.setViewPager(mViewPager);
+        mViewPager.setCurrentItem(0);
     }
 }

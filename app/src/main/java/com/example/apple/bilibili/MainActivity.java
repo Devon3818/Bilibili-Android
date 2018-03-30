@@ -1,9 +1,10 @@
 package com.example.apple.bilibili;
 
-import android.app.Fragment;
+
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -37,11 +38,10 @@ public class MainActivity extends AppCompatActivity
                 homePageFragment
         };
 
-        getFragmentManager()
+        getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.ic_content, homePageFragment)
                 .show(homePageFragment).commit();
-
 
     }
 
