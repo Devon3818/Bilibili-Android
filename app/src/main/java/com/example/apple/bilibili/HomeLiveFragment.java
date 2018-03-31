@@ -3,6 +3,8 @@ package com.example.apple.bilibili;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,10 @@ import android.view.ViewGroup;
  */
 
 public class HomeLiveFragment extends Fragment {
+
+    LiveAppIndexAdapter liveAppIndexAdapter;
+    RecyclerView recyclerView;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -19,7 +25,22 @@ public class HomeLiveFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        recyclerView = view.findViewById(R.id.recycle);
+        initViewPager();
+    }
+
     public static HomeLiveFragment newInstance() {
         return new HomeLiveFragment();
+    }
+
+    private void initViewPager(){
+        liveAppIndexAdapter = new LiveAppIndexAdapter(getActivity());
+
+        recyclerView.setAdapter(liveAppIndexAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
     }
 }
