@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity
 
     private Fragment[] fragments;
     private HomePageFragment homePageFragment;
+    private HomeRegionFragment homeRegionFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +35,10 @@ public class MainActivity extends AppCompatActivity
 
     private void initFragments(){
         homePageFragment = HomePageFragment.newInstance();
+        homeRegionFragment = HomeRegionFragment.newInstance();
         fragments = new Fragment[]{
-                homePageFragment
+                homePageFragment,
+                homeRegionFragment
         };
 
         getSupportFragmentManager()

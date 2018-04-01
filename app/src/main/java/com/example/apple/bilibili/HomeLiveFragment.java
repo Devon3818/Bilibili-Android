@@ -3,6 +3,7 @@ package com.example.apple.bilibili;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -40,7 +41,23 @@ public class HomeLiveFragment extends Fragment {
         liveAppIndexAdapter = new LiveAppIndexAdapter(getActivity());
 
         recyclerView.setAdapter(liveAppIndexAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        GridLayoutManager layout = new GridLayoutManager(getActivity(),12);
+        layout.setOrientation(LinearLayoutManager.VERTICAL);
+        layout.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                if( position == 0 ){
+                    return 12;
+                }
+                if( position < 5 ){
+                    return 3;
+                }
+                else{
+                    return 6;
+                }
+            }
+        });
+        recyclerView.setLayoutManager(layout);
 
     }
 }

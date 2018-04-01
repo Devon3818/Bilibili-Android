@@ -25,6 +25,9 @@ public class HomePagerAdapter extends FragmentPagerAdapter {
         if (fragments[position] == null) {
             fragments[position] = HomeLiveFragment.newInstance();
         }
+        if(position == 3){
+            fragments[position] = HomeRegionFragment.newInstance();
+        }
         return fragments[position];
     }
 
