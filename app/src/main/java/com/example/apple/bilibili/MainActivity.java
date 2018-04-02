@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,6 +20,8 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private Fragment[] fragments;
+    private int currentTabIndex;
+    private int index;
     private HomePageFragment homePageFragment;
     private HomeRegionFragment homeRegionFragment;
 
@@ -103,5 +106,27 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    /**
+     * Fragment切换
+     */
+    private void switchFragment() {
+        FragmentTransaction trx = getSupportFragmentManager().beginTransaction();
+        trx.hide(fragments[currentTabIndex]);
+        if (!fragments[index].isAdded()) {
+            trx.add(R.id.container, fragments[index]);
+        }
+        trx.show(fragments[index]).commit();
+        currentTabIndex = index;
+    }
+
+    /**
+     * 切换Fragment的下标
+     */
+    private void changeFragmentIndex(MenuItem item, int currentIndex) {
+        index = currentIndex;
+        switchFragment();
+        item.setChecked(true);
     }
 }

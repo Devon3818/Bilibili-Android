@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/recycle_reg"
+    android:id="@+id/dv_recycle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipToPadding="false"
     android:overScrollMode="never"
-    android:paddingTop="16dp"/>
+    android:paddingTop="120dp">
+
+</android.support.v7.widget.RecyclerView>

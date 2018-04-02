@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 /**
  * Created by apple on 2018/4/1.
  */
@@ -16,6 +15,7 @@ import android.view.ViewGroup;
 public class HomeRegionFragment extends Fragment {
 
     RecyclerView recyclerView;
+    HomeRegionItemAdapter homeRegionItemAdapter;
 
     public static HomeRegionFragment newInstance() {
         return new HomeRegionFragment();
@@ -32,14 +32,16 @@ public class HomeRegionFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        recyclerView = view.findViewById(R.id.recycle_reg);
+        recyclerView = view.findViewById(R.id.dv_recycle);
         initViewPager();
     }
 
     public void initViewPager(){
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),3));
-        HomeRegionItemAdapter homeRegionItemAdapter = new HomeRegionItemAdapter(recyclerView);
+        GridLayoutManager layout = new GridLayoutManager(getActivity(),3);
+        recyclerView.setLayoutManager(layout);
+        HomeRegionItemAdapter homeRegionItemAdapter = new HomeRegionItemAdapter(getActivity());
         recyclerView.setAdapter(homeRegionItemAdapter);
+
     }
 }

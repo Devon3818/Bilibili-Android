@@ -9,18 +9,16 @@
     android:gravity="center">
 
     <ImageView
-        android:id="@+id/item_icon"
+        android:id="@+id/dv_item_icon"
         android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/ic_category_live"/>
+        android:layout_height="50dp" />
 
     <TextView
-        android:id="@+id/item_title"
+        android:id="@+id/dv_item_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:textColor="#666"
-        android:text="HELLO"
         android:textSize="14sp"/>
 
 </LinearLayout>
