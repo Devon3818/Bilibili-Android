@@ -1,6 +1,7 @@
 package com.example.apple.bilibili;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,6 +47,10 @@ public class LiveAppIndexAdapter extends RecyclerView.Adapter {
         }
         if(viewType == 2){
             return new LiveEntranceViewHolder(LayoutInflater.from(mContext).inflate(R.layout.item_live_entrance,parent,false));
+        }
+
+        if(viewType == 0){
+            return new LiveItemViewHolder(LayoutInflater.from(mContext).inflate(R.layout.item_live_partition,parent,false));
         }else{
             return new ItemViewHolder(LayoutInflater.from(mContext).inflate(R.layout.test_view2,parent,false));
         }
@@ -62,11 +67,24 @@ public class LiveAppIndexAdapter extends RecyclerView.Adapter {
                     .into(((LiveEntranceViewHolder) holder).image);
         }
 
+        if( holder instanceof LiveItemViewHolder ){
+            LiveItemViewHolder liveItemViewHolder = (LiveItemViewHolder) holder;
+            liveItemViewHolder.itemLiveTitle.setText("Bilibili");
+            liveItemViewHolder.itemLiveUser.setText("Devon");
+            liveItemViewHolder.itemLiveCount.setText("135");
+            Glide.with(mContext)
+                    .load("https://i2.hdslb.com/bfs/archive/290a1d2783f8ad5be63c3d3c7472ce325c7208fe.jpg@320w_200h.webp")
+                    .into(((LiveItemViewHolder) holder).itemLiveCover);
+            Glide.with(mContext)
+                    .load("https://avatars1.githubusercontent.com/u/11835988?s=260&v=4")
+                    .into(((LiveItemViewHolder) holder).itemLiverUserCover);
+        }
+
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return 9;
     }
 
     @Override
@@ -111,6 +129,27 @@ public class LiveAppIndexAdapter extends RecyclerView.Adapter {
             image = itemView.findViewById(R.id.live_entrance_image);
         }
     }
+
+    class LiveItemViewHolder extends RecyclerView.ViewHolder {
+
+        ImageView itemLiveCover;
+        TextView itemLiveUser;
+        TextView itemLiveTitle;
+        ImageView itemLiverUserCover;
+        TextView itemLiveCount;
+        CardView itemLiveLayout;
+
+        public LiveItemViewHolder(View itemView) {
+            super(itemView);
+            itemLiveCover = itemView.findViewById(R.id.item_live_cover);
+            itemLiveUser = itemView.findViewById(R.id.item_live_user);
+            itemLiveTitle = itemView.findViewById(R.id.item_live_title);
+            itemLiverUserCover = itemView.findViewById(R.id.item_live_user_cover);
+            itemLiveCount = itemView.findViewById(R.id.item_live_count);
+            itemLiveLayout = itemView.findViewById(R.id.item_live_layout);
+        }
+    }
+
 
     class GlideImageLoader extends ImageLoader {
 
